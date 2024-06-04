@@ -31,11 +31,8 @@ llm = HuggingFaceLLM(
     model_kwargs={"torch_dtype": torch.float16 , "load_in_8bit":True}
 )
 
-
 embed_model=LangchainEmbedding(
     HuggingFaceEmbeddings(model_name="sentence-transformers/all-mpnet-base-v2"))
-
-
 
 service_context=ServiceContext.from_defaults(
     chunk_size=1024,
@@ -48,9 +45,33 @@ index=VectorStoreIndex.from_documents(documents,service_context=service_context)
 
 query_engine=index.as_query_engine()
 
-response=query_engine.query("what is attention is all you need?")
 
-print(response)
+
+import argparse
+
+def main():
+    parser = argparse.ArgumentParser(description="A simple example of argparse.")
+    
+    # Add a string argument
+    parser.add_argument('-s', '--string', type=str, required=True, help='A string argument')
+
+    # Parse the arguments
+    args = parser.parse_args()
+
+    # Access the string argument
+    input_string = args.string
+    print(f'The input string is: {input_string}')
+
+    response = query_engine.query(input_string)
+
+    print(response)
+
+
+if __name__ == "__main__":
+    main()
+
+
+
 
    
     
