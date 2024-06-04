@@ -49,26 +49,24 @@ query_engine=index.as_query_engine()
 
 import argparse
 
-def main():
-    parser = argparse.ArgumentParser(description="A simple example of argparse.")
-    
-    # Add a string argument
-    parser.add_argument('-s', '--string', type=str, required=True, help='A string argument')
 
-    # Parse the arguments
-    args = parser.parse_args()
+parser = argparse.ArgumentParser(description="A simple example of argparse.")
 
-    # Access the string argument
-    input_string = args.string
-    print(f'The input string is: {input_string}')
+# Add a string argument
+parser.add_argument('-s', '--string', type=str, required=True, help='A string argument')
 
-    response = query_engine.query(input_string)
+# Parse the arguments
+args = parser.parse_args()
 
-    print(response)
+# Access the string argument
+input_string = args.string
+print(f'The input string is: {input_string}')
+
+response = query_engine.query(input_string)
+
+print(response)
 
 
-if __name__ == "__main__":
-    main()
 
 
 
