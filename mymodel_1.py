@@ -5,7 +5,7 @@ import torch
 from langchain.embeddings.huggingface import HuggingFaceEmbeddings
 from llama_index.legacy.embeddings.langchain import LangchainEmbedding
 
-documents=SimpleDirectoryReader("/kaggle/working/LLM/data").load_data()
+documents=SimpleDirectoryReader("/kaggle/working/LLM/data_2").load_data()
 
 #####################
 
@@ -63,7 +63,9 @@ input_string = args.string
 print(f'The input string is: {input_string}')
 
 response = query_engine.query(input_string)
-
+print()
+print()
+print('-----------------final result----------------------')
 print(response)
 
 
